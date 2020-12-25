@@ -4,9 +4,11 @@
 int main()
 {
     char tab[3][3] = {{'a' ,'b' ,'c'}, {'d' ,'e' ,'f'}, {'g' ,'h' ,'i'}};
-    char *ws = &tab;
-    wyswietlanie(ws);
-    printf("%s", *(ws+1));
+
+    wyswietlanie(tab);
+    printf("\n");
+    printf("%c", tab[0][0]);
+
 }
 
 
@@ -25,18 +27,19 @@ void ruchkomputera()
 {
 
 }
-void wyswietlanie(char *tab)
+void wyswietlanie(char tab[3][3])
 {
 
-    for(int i = 0; i < 2 ; ++i)
+    for(int i = 0; i <= 2 ; ++i)
     {
-        for(int j = 0 ; j> 2 ; ++j)
+        for(int j = 0 ; j<=2 ; ++j)
         {
-            int a = *(tab+i);
-            printf("%s", a);
+            printf("%c ", tab[i][j]);
         }
+        printf("\n");
 
     }
+    tab[0][0] = 'x';
     printf("\n");
 
 }
@@ -45,14 +48,5 @@ void wyswietlanie(char *tab)
 ///NOTATKI
 
 ///& daje wskaźnik, * daje to co jest pod wskaźnikiem
-/*
-CO POTRZEBNE
+///wszystkie tablice są przekazywanie do funkcji przez referencje
 
-inicjalizacja planszy
-ruch gracza
-tóch komputera
-analiza zwyciêstwa
-generowanie ruchy komputera
-wyœwietlanie
-
-*/
