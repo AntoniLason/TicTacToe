@@ -3,8 +3,10 @@
 
 int main()
 {
-    char tab[3][3];
-
+    char tab[3][3] = {{'a' ,'b' ,'c'}, {'d' ,'e' ,'f'}, {'g' ,'h' ,'i'}};
+    char *ws = &tab;
+    wyswietlanie(ws);
+    printf("%s", *(ws+1));
 }
 
 
@@ -23,17 +25,34 @@ void ruchkomputera()
 {
 
 }
+void wyswietlanie(char *tab)
+{
+
+    for(int i = 0; i < 2 ; ++i)
+    {
+        for(int j = 0 ; j> 2 ; ++j)
+        {
+            int a = *(tab+i);
+            printf("%s", a);
+        }
+
+    }
+    printf("\n");
+
+}
 
 //*******************************
 ///NOTATKI
+
+///& daje wska≈∫nik, * daje to co jest pod wska≈∫nikiem
 /*
 CO POTRZEBNE
 
 inicjalizacja planszy
 ruch gracza
-tÛch komputera
-analiza zwyciÍstwa
+t√≥ch komputera
+analiza zwyci√™stwa
 generowanie ruchy komputera
-wyúwietlanie
+wy≈ìwietlanie
 
 */
