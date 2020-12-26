@@ -1,32 +1,50 @@
 #include <stdio.h>
+#include <conio.h>
 
+void wyswietlanie(char tab[3][3]);
+void ruchkomputera(char tab[3][3]);
+int analizazwycienstwa(char tab[3][3]);
+void ruchgracza(char tab[3][3]);
 
 int main()
 {
-    char tab[3][3] = {{'a' ,'b' ,'c'}, {'d' ,'e' ,'f'}, {'g' ,'h' ,'i'}};
-
+    char tab[3][3] = {{'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}};
+    ruchgracza(tab);
     wyswietlanie(tab);
     printf("\n");
-    printf("%c", tab[0][0]);
 
 }
 
 
 //***********************
 
-void ruchgracza()
+void ruchgracza(char tab[3][3])
+{
+    int c = getch();
+    c-=49;
+    printf("%d\n", c);
+    if(tab[c/3][c%3]=='-')
+    {
+        tab[c/3][c%3]='x';
+    }
+    else
+    {
+        printf("ruch niemozliwy, sproboj ponownie\n");
+        ruchgracza(tab);
+    }
+
+}
+
+int analizazwycienstwa(char tab[3][3])
 {
 
 }
 
-int analizazwycienstwa()
+void ruchkomputera(char tab[3][3])
 {
 
 }
-void ruchkomputera()
-{
 
-}
 void wyswietlanie(char tab[3][3])
 {
 
@@ -37,10 +55,7 @@ void wyswietlanie(char tab[3][3])
             printf("%c ", tab[i][j]);
         }
         printf("\n");
-
     }
-    tab[0][0] = 'x';
-    printf("\n");
 
 }
 
