@@ -3,15 +3,23 @@
 
 void wyswietlanie(char tab[3][3]);
 void ruchkomputera(char tab[3][3]);
-int analizazwycienstwa(char tab[3][3]);
+void analizazwycienstwa(char tab[3][3]);
 void ruchgracza(char tab[3][3]);
 
 int main()
 {
     char tab[3][3] = {{'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}};
+    while(1)
+    {
     ruchgracza(tab);
     wyswietlanie(tab);
+    analizazwycienstwa(tab);
+    //ruchkomputera(tab);
+    //wyswietlanie(tab);
+    //analizazwycienstwa(tab);
     printf("\n");
+    }
+
 
 }
 
@@ -35,9 +43,32 @@ void ruchgracza(char tab[3][3])
 
 }
 
-int analizazwycienstwa(char tab[3][3])
+void analizazwycienstwa(char tab[3][3])
 {
+        for(int i = 0 ; i<3; ++i)
+    {
+    if(tab[i][0] == 'o' && tab[i][1] == 'o' && tab[i][2]== 'o')
+        printf("Wygrywa kulko");
+    else if(tab[0][i] == 'o' && tab[1][i] == 'o' && tab[2][i]== 'o')
+        printf("Wygrywa kulko");
+    }
+    if(tab[0][0] == 'o' && tab[1][1] == 'o' && tab[2][2]== 'o')
+        printf("Wygrywa kulko");
+    else if(tab[2][0] == 'o' && tab[1][1] == 'o' && tab[0][2]== 'o')
+        printf("Wygrywa kulko");
 
+
+    for(int i = 0 ; i<3; ++i)
+    {
+    if(tab[i][0] == 'x' && tab[i][1] == 'x' && tab[i][2]== 'x')
+        printf("Wygrywa krzyzyk");
+    else if(tab[0][i] == 'x' && tab[1][i] == 'x' && tab[2][i]== 'x')
+        printf("Wygrywa krzyzyk");
+    }
+    if(tab[0][0] == 'x' && tab[1][1] == 'x' && tab[2][2]== 'x')
+        printf("Wygrywa krzyzyk");
+    else if(tab[2][0] == 'x' && tab[1][1] == 'x' && tab[0][2]== 'x')
+        printf("Wygrywa krzyzyk");
 }
 
 void ruchkomputera(char tab[3][3])
