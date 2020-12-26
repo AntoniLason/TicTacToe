@@ -14,9 +14,9 @@ int main()
     ruchgracza(tab);
     wyswietlanie(tab);
     analizazwycienstwa(tab);
-    //ruchkomputera(tab);
-    //wyswietlanie(tab);
-    //analizazwycienstwa(tab);
+    ruchkomputera(tab);
+    wyswietlanie(tab);
+    analizazwycienstwa(tab);
     printf("\n");
     }
 
@@ -81,7 +81,7 @@ void wyswietlanie(char tab[3][3])
 
     for(int i = 0; i <= 2 ; ++i)
     {
-        for(int j = 0 ; j<=2 ; ++j)
+        for(int j = 0 ; j <= 2 ; ++j)
         {
             printf("%c ", tab[i][j]);
         }
