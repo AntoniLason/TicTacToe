@@ -1,13 +1,36 @@
 #include <stdio.h>
 #include <conio.h>
 
+///funkcje
+
 void wyswietlanie(char tab[3][3]);
 void ruchkomputera(char tab[3][3]);
 void analizazwycienstwa(char tab[3][3]);
 void ruchgracza(char tab[3][3]);
 
+///*********************
+
+///Struktury
+
+typedef struct plansza{
+int ocena;                  //ocena ruchu, poprawna i brana pod uwagę tylko dla ruchu wygrywającego, w przeciwnym razie 10
+int glebokosc;              //ilość ruchów które komputer musi wykonać od początku gry do tej planszy
+char plansza[3][3];
+struct plansza *nastepna;
+struct plansza *poprzednia;
+} plansza;
+
+///*********************
+
+///Zmienne globalne
+plansza* first;
+///*********************
 int main()
 {
+    first = malloc(sizeof(plansza));
+    first ->poprzednia = NULL;
+    first ->nastepna = NULL;
+
     char tab[3][3] = {{'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}};
     while(1)
     {
