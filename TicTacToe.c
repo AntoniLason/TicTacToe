@@ -11,7 +11,6 @@ struct plansza
     struct plansza *poprzednia;
 };
 
-
 ///*********************
 
 ///funkcje
@@ -24,10 +23,10 @@ void losowewypelnianie(struct plansza *wsk, char tab1[3][3]);
 
 ///*********************
 
-
-
 ///Zmienne globalne
+
 struct plansza *pop;
+
 ///*********************
 int main()
 {
