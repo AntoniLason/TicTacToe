@@ -1,6 +1,19 @@
 #include <stdio.h>
 #include <conio.h>
 
+///Struktury
+
+struct plansza
+{
+    int ocena;                  //ocena ruchu, poprawna i brana pod uwagę tylko dla ruchu wygrywającego, w przeciwnym razie 10
+    int glebokosc;              //ilość ruchów które komputer musi wykonać od początku gry do tej planszy
+    char obraz[3][3];
+    struct plansza *poprzednia;
+};
+
+
+///*********************
+
 ///funkcje
 
 void wyswietlanie(char tab[3][3]);
@@ -11,17 +24,7 @@ void losowewypelnianie(struct plansza *wsk, char tab1[3][3]);
 
 ///*********************
 
-///Struktury
 
-typedef struct plansza
-{
-    int ocena;                  //ocena ruchu, poprawna i brana pod uwagę tylko dla ruchu wygrywającego, w przeciwnym razie 10
-    int glebokosc;              //ilość ruchów które komputer musi wykonać od początku gry do tej planszy
-    char obraz[3][3];
-    struct plansza *poprzednia;
-};
-
-///*********************
 
 ///Zmienne globalne
 struct plansza *pop;
@@ -114,7 +117,7 @@ void wyswietlanie(char tab[3][3])
 }
 
 
-void losowewypelnianie(struct plansza* wsk, char tab1[3][3])
+void losowewypelnianie(struct plansza *wsk, char tab1[3][3])
 {
     struct plansza *h;
     for(int i = 0; i < 9; i++)
