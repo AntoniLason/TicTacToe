@@ -7,40 +7,38 @@ void wyswietlanie(char tab[3][3]);
 void ruchkomputera(char tab[3][3]);
 void analizazwycienstwa(char tab[3][3]);
 void ruchgracza(char tab[3][3]);
+void losowewypelnianie(plansza *wsk);
 
 ///*********************
 
 ///Struktury
 
-typedef struct plansza{
-int ocena;                  //ocena ruchu, poprawna i brana pod uwagę tylko dla ruchu wygrywającego, w przeciwnym razie 10
-int glebokosc;              //ilość ruchów które komputer musi wykonać od początku gry do tej planszy
-char plansza[3][3];
-struct plansza *nastepna;
-struct plansza *poprzednia;
+typedef struct plansza
+{
+    int ocena;                  //ocena ruchu, poprawna i brana pod uwagę tylko dla ruchu wygrywającego, w przeciwnym razie 10
+    int glebokosc;              //ilość ruchów które komputer musi wykonać od początku gry do tej planszy
+    char obraz[3][3];
+    struct obraz *poprzednia;
 } plansza;
 
 ///*********************
 
 ///Zmienne globalne
-plansza* first;
+plansza *pop;
 ///*********************
 int main()
 {
-    first = malloc(sizeof(plansza));
-    first ->poprzednia = NULL;
-    first ->nastepna = NULL;
 
-    char tab[3][3] = {{'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}, {'-' ,'-' ,'-'}};
+    char tab[3][3] = {{'-','-','-'}, {'-','-','-'}, {'-','-','-'}};
     while(1)
     {
-    ruchgracza(tab);
-    wyswietlanie(tab);
-    analizazwycienstwa(tab);
-    ruchkomputera(tab);
-    wyswietlanie(tab);
-    analizazwycienstwa(tab);
-    printf("\n");
+        ruchgracza(tab);
+        wyswietlanie(tab);
+        analizazwycienstwa(tab);
+        ruchkomputera(tab);
+        wyswietlanie(tab);
+        analizazwycienstwa(tab);
+        printf("\n");
     }
 
 
@@ -68,12 +66,12 @@ void ruchgracza(char tab[3][3])
 
 void analizazwycienstwa(char tab[3][3])
 {
-        for(int i = 0 ; i<3; ++i)
+    for(int i = 0 ; i<3; ++i)
     {
-    if(tab[i][0] == 'o' && tab[i][1] == 'o' && tab[i][2]== 'o')
-        printf("Wygrywa kulko");
-    else if(tab[0][i] == 'o' && tab[1][i] == 'o' && tab[2][i]== 'o')
-        printf("Wygrywa kulko");
+        if(tab[i][0] == 'o' && tab[i][1] == 'o' && tab[i][2]== 'o')
+            printf("Wygrywa kulko");
+        else if(tab[0][i] == 'o' && tab[1][i] == 'o' && tab[2][i]== 'o')
+            printf("Wygrywa kulko");
     }
     if(tab[0][0] == 'o' && tab[1][1] == 'o' && tab[2][2]== 'o')
         printf("Wygrywa kulko");
@@ -83,10 +81,10 @@ void analizazwycienstwa(char tab[3][3])
 
     for(int i = 0 ; i<3; ++i)
     {
-    if(tab[i][0] == 'x' && tab[i][1] == 'x' && tab[i][2]== 'x')
-        printf("Wygrywa krzyzyk");
-    else if(tab[0][i] == 'x' && tab[1][i] == 'x' && tab[2][i]== 'x')
-        printf("Wygrywa krzyzyk");
+        if(tab[i][0] == 'x' && tab[i][1] == 'x' && tab[i][2]== 'x')
+            printf("Wygrywa krzyzyk");
+        else if(tab[0][i] == 'x' && tab[1][i] == 'x' && tab[2][i]== 'x')
+            printf("Wygrywa krzyzyk");
     }
     if(tab[0][0] == 'x' && tab[1][1] == 'x' && tab[2][2]== 'x')
         printf("Wygrywa krzyzyk");
@@ -96,6 +94,14 @@ void analizazwycienstwa(char tab[3][3])
 
 void ruchkomputera(char tab[3][3])
 {
+    pop = malloc(sizeof(plansza));
+    pop ->poprzednia = NULL;
+    for(int i = 0; i<9; i++)        //kopiowanie tablicy do struktury plansza
+    {
+        pop->obraz[i/3][i%3] = tab[i/3][i%3];
+    }
+//   losowewypelnianie(pop);
+
 
 }
 
@@ -112,7 +118,20 @@ void wyswietlanie(char tab[3][3])
     }
 
 }
+///Źle
+/*
+void losowewypelnianie(plansza *wsk)
+{
+    for(int i = 0; i < 9; i++)
+    {
+        if(tab[i/3][i%3]=='-')
+        {
+            tab[i/3][i%3]='o';
+        }
+    }
 
+}
+*/
 //*******************************
 ///NOTATKI
 
