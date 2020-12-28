@@ -7,7 +7,7 @@ void wyswietlanie(char tab[3][3]);
 void ruchkomputera(char tab[3][3]);
 void analizazwycienstwa(char tab[3][3]);
 void ruchgracza(char tab[3][3]);
-void losowewypelnianie(plansza *wsk);
+void losowewypelnianie(struct plansza *wsk, char tab1[3][3]);
 
 ///*********************
 
@@ -18,13 +18,13 @@ typedef struct plansza
     int ocena;                  //ocena ruchu, poprawna i brana pod uwagę tylko dla ruchu wygrywającego, w przeciwnym razie 10
     int glebokosc;              //ilość ruchów które komputer musi wykonać od początku gry do tej planszy
     char obraz[3][3];
-    struct obraz *poprzednia;
-} plansza;
+    struct plansza *poprzednia;
+};
 
 ///*********************
 
 ///Zmienne globalne
-plansza *pop;
+struct plansza *pop;
 ///*********************
 int main()
 {
@@ -40,8 +40,6 @@ int main()
         analizazwycienstwa(tab);
         printf("\n");
     }
-
-
 }
 
 
@@ -61,7 +59,6 @@ void ruchgracza(char tab[3][3])
         printf("ruch niemozliwy, sproboj ponownie\n");
         ruchgracza(tab);
     }
-
 }
 
 void analizazwycienstwa(char tab[3][3])
@@ -94,15 +91,13 @@ void analizazwycienstwa(char tab[3][3])
 
 void ruchkomputera(char tab[3][3])
 {
-    pop = malloc(sizeof(plansza));
+    pop = malloc(sizeof(struct plansza));
     pop ->poprzednia = NULL;
     for(int i = 0; i<9; i++)        //kopiowanie tablicy do struktury plansza
     {
         pop->obraz[i/3][i%3] = tab[i/3][i%3];
     }
-//   losowewypelnianie(pop);
-
-
+    losowewypelnianie(pop, tab);
 }
 
 void wyswietlanie(char tab[3][3])
@@ -116,22 +111,28 @@ void wyswietlanie(char tab[3][3])
         }
         printf("\n");
     }
-
 }
-///Źle
-/*
-void losowewypelnianie(plansza *wsk)
+
+
+void losowewypelnianie(struct plansza* wsk, char tab1[3][3])
 {
+    struct plansza *h;
     for(int i = 0; i < 9; i++)
     {
-        if(tab[i/3][i%3]=='-')
+        h = malloc(sizeof(struct plansza));
+        h ->poprzednia = wsk;
+        for(int j = 0; j<9; j++)
         {
-            tab[i/3][i%3]='o';
+            h->obraz[j/3][j%3] = tab1[j/3][j%3];
         }
+        if((*h).obraz[i/3][i%3]=='-')
+        {
+            h->obraz[i/3][i%3]='o';
+        }
+        wyswietlanie((*h).obraz);
     }
-
 }
-*/
+
 //*******************************
 ///NOTATKI
 
