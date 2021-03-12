@@ -33,6 +33,8 @@ struct plansza *pop;
 int main()
 {
         char tab[3][3] = {{'-','-','-'}, {'-','-','-'}, {'-','-','-'}};
+        ruchgracza(tab);
+        wyswietlanie(tab);
 
 }
 
@@ -55,7 +57,7 @@ void ruchgracza(char tab[3][3])
 {
     int c = getch();
     c-=49;
-    printf("%d\n", c);
+    printf("%d\n", c+1);
     if(tab[c/3][c%3]=='-')
     {
         tab[c/3][c%3]='x';
